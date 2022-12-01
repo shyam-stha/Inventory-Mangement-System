@@ -6,8 +6,12 @@ import "./category.scss";
 const Category = () => {
   return (
     <div className="category">
+      <h3 className="headings">Category</h3>
       <AddCategory />
-      <ManageCategory />
+      <div className="manage-category">
+        Manage Category
+        <ManageCategory />
+      </div>
     </div>
   );
 };
