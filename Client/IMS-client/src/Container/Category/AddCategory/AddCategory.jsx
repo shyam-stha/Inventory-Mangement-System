@@ -10,6 +10,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { getCategory, postCategory } from "../../../Api/Category";
 
 const validationSchema = yup.object({
   category: yup.string().required("Required"),
@@ -46,7 +47,12 @@ const AddCategory = () => {
           <Formik
             initialValues={INITIAL_VAL}
             validationSchema={validationSchema}
-            onSubmit={async (value, { setSubmitting, resetForm }) => {}}
+            onSubmit={async (value, { setSubmitting, resetForm }) => {
+              const response = await postCategory(value);
+              if(response){
+                await getCategory()
+              }
+            }}
           >
             <Form
               autoCapitalize="true"
@@ -70,7 +76,7 @@ const AddCategory = () => {
                 fullWidth
                 required
               />
-              <DialogActions sx={{mt:5}}>
+              <DialogActions sx={{mt:5, display : "flex", gap: 2}}>
                 <CustomButton type="submit" children="Add Category" />
                 <Button onClick={handleClose} > Cancel</Button>
               </DialogActions>
