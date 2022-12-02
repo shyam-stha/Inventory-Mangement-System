@@ -1,6 +1,7 @@
 import React from "react";
 import Appbar from "../../Components/Appbar/Appbar";
 import Drawer from "../../Components/Drawer/Drawer";
+import { Outlet } from "react-router-dom";
 import "./home.scss";
 
 const Home = () => {
@@ -11,7 +12,7 @@ const Home = () => {
       </div>
       <div className="container">
         <Appbar />
-        Container
+        <Outlet />
         </div>
     </div>
   );
