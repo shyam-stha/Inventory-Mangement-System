@@ -13,7 +13,7 @@
         }
     }
     .center {
-        font-weight: bold;
+        font-weight: bolder;
         color: rgb(45, 40, 40);
         .drawer-item {
             display: flex;
@@ -21,9 +21,11 @@
             list-style: none;
             padding: 5px 30px;
             cursor: pointer;
-
+            Link {
+                text-decoration: none;
+            }
             &:hover {
-                color: blue;
+                color: transparent;
                 background-color: rgba(188, 147, 227, 0.566);
             }
         }
