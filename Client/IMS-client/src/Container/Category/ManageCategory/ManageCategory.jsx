@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import Columns from "./TableConfig";
-import { getCategory } from "../../../Api/Category";
+import { getCategory } from "../../../Api/fetchCategory";
 import "./manageCategory.scss"
 
 const ManageCategory = () => {
@@ -28,7 +28,7 @@ const ManageCategory = () => {
       className="tableData"
       style={{
         height: 400,
-        width: "60%",
+        width: "80%",
       }}
     >
       <DataGrid

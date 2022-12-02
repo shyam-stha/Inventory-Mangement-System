@@ -1,30 +1,36 @@
 import { Stack, Button } from "@mui/material";
+import makeStyles from "@mui/styled-engine";
+import { changeCategoryStatus, deleteCategory } from "../../../Api/fetchCategory";
+
+const imgStyle = {
+  height: "25px",
+  width: "25px",
+};
 
 const columns = [
-  { field: "id", headerName: "ID", width: 70,  },
-  { field: "category", headerName: "Category", width: 200, },
+  { field: "id", headerName: "ID", width: 70 },
+  { field: "category", headerName: "Category", width: 200 },
   {
     field: "status",
     headerName: "Status",
     width: 200,
-    align: 'center',
+    align: "center",
     sortable: false,
     disableClickEventBubbling: true,
 
     renderCell: (params) => {
-      const onClick = (e) => {
-        const currentRow = params.row;
-        return alert(JSON.stringify(currentRow, null, 4));
+      const onClick =async (id,category, status) => {
+        const response = await changeCategoryStatus(id, category,status)
       };
 
       return (
         <Button
-          variant="outlined"
-          color="primary"
+          variant={params.row.status === "Active" ? "outlined" : "contained"}
+          color={params.row.status === "Active" ? "primary" : "error"}
           size="small"
-          onClick={onClick}
+          onClick={()=>onClick( params.row._id, params.row.category, params.row.status)}
         >
-          Active
+          {params.row.status === "Active" ? "Active" : "Inactive"}
         </Button>
       );
     },
@@ -34,13 +40,13 @@ const columns = [
     headerName: "Action",
     sortable: false,
     width: 300,
-    align: 'center',
+    align: "center",
     disableClickEventBubbling: true,
 
     renderCell: (params) => {
-      const onClick = (e) => {
-        const currentRow = params.row;
-        return alert(JSON.stringify(currentRow, null, 4));
+      const onClick = async (id) => {
+        const response = await deleteCategory(id);
+        console.log(response);
       };
 
       return (
@@ -51,15 +57,21 @@ const columns = [
             size="small"
             onClick={onClick}
           >
-            Edit
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/3218/3218971.png"
+              style={imgStyle}
+            />
           </Button>
           <Button
             variant="outlined"
             color="error"
             size="small"
-            onClick={onClick}
+            onClick={() => onClick(params.row._id)}
           >
-            Delete
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/6861/6861362.png"
+              style={imgStyle}
+            />
           </Button>
         </Stack>
       );
