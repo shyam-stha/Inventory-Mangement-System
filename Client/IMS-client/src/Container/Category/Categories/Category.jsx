@@ -6,10 +6,12 @@ import "./category.scss";
 const Category = () => {
   return (
     <div className="category">
-      <h3 className="headings">Category</h3>
-      <AddCategory />
+      <p className="headings top">Category</p>
+      <div className="add-category">
+        <AddCategory />
+      </div>
       <div className="manage-category">
-        Manage Category
+       <h3 className="headings bottom">Manage Category</h3>
         <ManageCategory />
       </div>
     </div>
