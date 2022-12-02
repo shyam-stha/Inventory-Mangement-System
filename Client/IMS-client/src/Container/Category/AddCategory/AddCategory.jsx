@@ -10,7 +10,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { getCategory, postCategory } from "../../../Api/Category";
+import { getCategory, postCategory } from "../../../Api/fetchCategory";
 
 const validationSchema = yup.object({
   category: yup.string().required("Required"),
@@ -51,6 +51,7 @@ const AddCategory = () => {
               const response = await postCategory(value);
               if(response){
                 await getCategory()
+                setOpen(false)
               }
             }}
           >
